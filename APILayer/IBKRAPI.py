@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 import threading
 import time
 #Vars
-ORDERID = 4
+ORDERID = 1
 
 #Class for Interactive Brokers Connection
 class IBApi(EWrapper,EClient):
