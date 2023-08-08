@@ -1,0 +1,29 @@
+Auction
+    Create an order to buy shares at COP (calculated opening price) before market opens
+    if order is not filled it is resubmitted as a limit order at COP or best bid/ask after open
+        - IBKRAPI.create_basic_order("BUY", "MIL", 100, limit_price=15.00, tif="AUC")
+
+Discretionary
+    Create a limit order with a bounded amount off of the limit you are willing to pay
+    IE Stock is at 15.00 I want to buy at 14.80 with discretion of 0.10
+    The market sees my limit order for 14.80 but i can be filled if stock hits 14.89
+        -IBKRAPI.create_basic_order("BUY", "LMT", 100, 14.80, limit_price=15.00, discretionary_amount=0.10)
+
+Market
+    Buy shares at whatever price is available
+        -IBKRAPI.create_basic_order("BUY", "MKT", 100)
+
+Market if Touched
+    If the price of a stock hits a target buy shares as a market order
+        - IBKRAPI.create_basic_order("BUY", "MIT", 100, aux_price=14.80)
+
+Market On Close
+    Submit a market order that wil execute as close to closing price as possible
+    Must be submitted at least 15 minutes before close
+        - IBKRAPI.create_basic_order("BUY", "MOC", 100)
+
+Market On Open
+    Submit a market order to be executed when the market opens the next day
+    Submit order before 9:28 am ET
+        - IBKRAPI.create_basic_order("BUY", "MKT", 100, tif="OPG")
+
